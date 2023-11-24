@@ -1,5 +1,6 @@
 open Gfile
-    
+open Tools
+ 
 let () =
 
   (* Check the number of command-line arguments *)
