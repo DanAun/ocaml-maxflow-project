@@ -2,4 +2,3 @@ _build/
 outfile
 *~
 *.exe
-.vscode/
