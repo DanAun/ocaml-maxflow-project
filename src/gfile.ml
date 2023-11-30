@@ -111,4 +111,24 @@ let from_file path =
   
   close_in infile ;
   final_graph
+
+(* Fiks dette, skal printe grafen i dot-format *)
+let export path graph =
   
+  (* Open a write-file. *)
+  let ff = open_out path in
+
+  (* Write in this file. *)
+  fprintf ff "%% This is a graph.\n\n" ;
+
+  (* Write all nodes (with fake coordinates) *)
+  n_iter_sorted graph (fun id -> fprintf ff "n %d %d %d\n" (compute_x id) (compute_y id) id) ;
+  fprintf ff "\n" ;
+
+  (* Write all arcs *)
+  let _ = e_fold graph (fun count arc -> fprintf ff "e %d %d %d %s\n" arc.src arc.tgt count arc.lbl ; count + 1) 0 in
+
+  fprintf ff "\n%% End of graph\n" ;
+
+  close_out ff ;
+  ()
