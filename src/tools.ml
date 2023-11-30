@@ -2,8 +2,7 @@
 open Graph
 
 (* assert false is of type ∀α.α, so the type-checker is happy. *)
-let clone_nodes (gr:'a graph) = 
-  let newGraph = empty_graph in
-    n_iter gr (new_node newGraph) (*Bruke n_fold*)
+let clone_nodes (gr:'a graph) = n_fold gr (new_node) empty_graph
 
-let gmap gr f = assert false
+(*let gmap gr f = assert false
+let add_arc gr i1 i2 int1 = assert false*)
