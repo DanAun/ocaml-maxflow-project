@@ -28,9 +28,9 @@ let () =
 
   (* Open file *)
   let graph = from_file infile in
-  let clone_nodes_test = clone_nodes graph in
-
+  let clone_nodes_graph = clone_nodes graph in
+  let clone_graph_with_add_arc = add_arc clone_nodes_graph 1 2 5 in
 
   (* Rewrite the graph that has been read. *)
-  let () = write_file outfile clone_nodes_test in
+  let () = write_file outfile clone_graph_with_add_arc in
 ()
