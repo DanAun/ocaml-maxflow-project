@@ -28,9 +28,9 @@ let () =
 
   (* Open file *)
   let graph = from_file infile in
-  let clone_nodes_test = clone_nodes graph in
+  let gmap_test = gmap graph string_of_int in
 
 
   (* Rewrite the graph that has been read. *)
-  let () = write_file outfile clone_nodes_test in
+  let () = write_file outfile gmap_test in
 ()
