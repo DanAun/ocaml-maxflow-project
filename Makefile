@@ -17,7 +17,7 @@ format:
 edit:
 	code . -n
 
-demo: build
+test: build
 	@echo "\n   ⚡  EXECUTING  ⚡\n"
 	./ftest.exe graphs/${graph} $(src) $(dst) outfile
 	@echo "\n   🥁  RESULT (content of outfile)  🥁\n"
@@ -27,3 +27,6 @@ clean:
 	find -L . -name "*~" -delete
 	rm -f *.exe
 	dune clean
+
+export:
+	dot -Tsvg outfile > image.svg

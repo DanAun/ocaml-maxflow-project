@@ -34,5 +34,5 @@ let () =
 
 
   (* Rewrite the graph that has been read. *)
-  let () = write_file outfile gmap_test in
+  let () = export outfile gmap_test in
 ()
