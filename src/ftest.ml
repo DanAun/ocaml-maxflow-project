@@ -30,11 +30,24 @@ let () =
   in
 
   (* Open file *)
-  (*let graph = from_file infile in*)
+  (* Test arc_label
   let graph1 = new_node empty_graph 1 in
   let graph2 = new_node graph1 2 in
   let graph3 = new_arc graph2 {src = 1 ; tgt = 2 ; lbl = 8} in
+  let graph4 = arc_label graph3 {src = 1 ; tgt = 2 ; lbl = 3} 2 in*)
+
+  (* Test min_label
+  let graph = from_file infile in
+  let int_graph = gmap graph int_of_string in
+  let arc1 = {src=0;tgt=3;lbl=10} in
+  let arc2 = {src=3;tgt=4;lbl=5} in
+  let arc3 = {src=4;tgt=5;lbl=14} in
+  let path = [arc1; arc2; arc3] in
+  let result = min_label path in
+  let result_arc = {src=1;tgt=5;lbl=result} in
+  let res_graph = new_arc int_graph result_arc in*)
+
 
   (* Rewrite the graph that has been read. *)
-  let () = export outfile (gmap (arc_label graph3 {src = 1 ; tgt = 2 ; lbl = 3} 2) string_of_int) in
+  let () = export outfile (gmap res_graph string_of_int) in
 ()
