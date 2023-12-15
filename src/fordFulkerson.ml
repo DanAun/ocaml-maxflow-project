@@ -31,4 +31,9 @@ let path_iteration graph path =
         handle_all_arcs graph_so_far rest_arcs
     in
     handle_all_arcs graph path
-(*Den funker for siste arc, men ikke de andre*)
+
+let max_flow graph p1 p2 =
+  (*TODO:
+     Run path_iteration with find_path_source_sink until no more paths can be found then return the graph and
+   the sum of all arc labels going into the sink
+   *)
