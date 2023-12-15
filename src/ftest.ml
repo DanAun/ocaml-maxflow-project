@@ -20,8 +20,9 @@ let () =
 
   (* Arguments are : infile(1) source-id(2) sink-id(3) outfile(4) *)
   
-  let infile = Sys.argv.(1)
-  and outfile = Sys.argv.(4)
+  (*let infile = Sys.argv.(1)
+  and outfile = Sys.argv.(4)*)
+  let outfile = Sys.argv.(4)
   
   (* These command-line arguments are not used for the moment. *)
   and _source = int_of_string Sys.argv.(2)
@@ -29,6 +30,13 @@ let () =
   in
 
   (* Open file *)
+  (* Test arc_label
+  let graph1 = new_node empty_graph 1 in
+  let graph2 = new_node graph1 2 in
+  let graph3 = new_arc graph2 {src = 1 ; tgt = 2 ; lbl = 8} in
+  let graph4 = arc_label graph3 {src = 1 ; tgt = 2 ; lbl = 3} 2 in*)
+
+  (* Test min_label
   let graph = from_file infile in
   let int_graph = gmap graph int_of_string in
   let arc1 = {src=0;tgt=3;lbl=10} in
@@ -37,7 +45,7 @@ let () =
   let path = [arc1; arc2; arc3] in
   let result = min_label path in
   let result_arc = {src=1;tgt=5;lbl=result} in
-  let res_graph = new_arc int_graph result_arc in
+  let res_graph = new_arc int_graph result_arc in*)
 
 
   (* Rewrite the graph that has been read. *)
