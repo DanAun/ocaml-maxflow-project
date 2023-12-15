@@ -1,5 +1,7 @@
 open Gfile
+open Graph
 open Tools
+open FordFulkerson
 
 let () =
 
@@ -28,11 +30,16 @@ let () =
 
   (* Open file *)
   let graph = from_file infile in
-  let int_graph = gmap graph int_of_string in 
-  let add_arc = add_arc int_graph 0 2 5 in
-  let gmap_test = gmap add_arc string_of_int in
+  let int_graph = gmap graph int_of_string in
+  let arc1 = {src=0;tgt=3;lbl=10} in
+  let arc2 = {src=3;tgt=4;lbl=5} in
+  let arc3 = {src=4;tgt=5;lbl=14} in
+  let path = [arc1; arc2; arc3] in
+  let result = min_label path in
+  let result_arc = {src=1;tgt=5;lbl=result} in
+  let res_graph = new_arc int_graph result_arc in
 
 
   (* Rewrite the graph that has been read. *)
-  let () = export outfile gmap_test in
+  let () = export outfile (gmap res_graph string_of_int) in
 ()

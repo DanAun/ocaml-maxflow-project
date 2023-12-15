@@ -1,9 +1,16 @@
+open Graph
+
 type path = int arc list
 
-
-
-
-
-let max_flow graph source sink =
-  let list_paths = all_paths_from_source_to_sink graph source sink in
-  List.iter (sub_label min_label i) list_paths
+let min_label path =
+  match path with
+  | [] -> failwith "Empty path"
+  | first_arc :: rest ->
+    let rec find_min_label acc = function
+      | [] -> acc
+      | arc :: arcs ->
+        let current_label = arc.lbl in
+        let min_label_so_far = min acc current_label in
+        find_min_label min_label_so_far arcs
+    in
+    find_min_label first_arc.lbl rest

@@ -1,3 +1,5 @@
+open Graph
+
 type path = int arc list
 
 
@@ -5,7 +7,7 @@ type path = int arc list
 val min_label: path -> int
 
 (*  arc_label takes in an arc and substracts the given int from the label and creates a residual arc in the opposite way*)
-val arc_label: int graph -> int arc -> int -> int graph
+(*val arc_label: int graph -> int arc -> int -> int graph
 
 (*  Takes in a graph, source, sink and returns a path from the source to the sink as a list of arcs.
    NB: Must also consider going backwards (arc target to arc source)*)
@@ -15,5 +17,5 @@ val find_path_source_sink : int graph -> id -> id -> path
 val path_iteration : int graph -> path -> int graph
 
 (*  Returns the max_flow from a source to a sink in the graph*)
-val max_flow: int graph -> id -> id -> int graph * int
+val max_flow: int graph -> id -> id -> int graph * int*)
 
