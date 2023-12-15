@@ -3,7 +3,7 @@ type path = int arc list
 
 
 (*  min_label takes a list of arcs and returns the minimum of the labels in the path from first arc to last arc*)
-(*val min_label: path -> int*)
+val min_label: path -> int
 
 (*  arc_label takes in an arc and substracts the given int from the label and creates a residual arc in the opposite way*)
 val arc_label: int graph -> int arc -> int -> int graph
