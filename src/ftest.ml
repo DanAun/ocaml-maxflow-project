@@ -1,5 +1,7 @@
 open Gfile
+open Graph
 open Tools
+open FordFulkerson
 
 let () =
 
@@ -18,8 +20,9 @@ let () =
 
   (* Arguments are : infile(1) source-id(2) sink-id(3) outfile(4) *)
   
-  let infile = Sys.argv.(1)
-  and outfile = Sys.argv.(4)
+  (*let infile = Sys.argv.(1)
+  and outfile = Sys.argv.(4)*)
+  let outfile = Sys.argv.(4)
   
   (* These command-line arguments are not used for the moment. *)
   and _source = int_of_string Sys.argv.(2)
@@ -27,12 +30,12 @@ let () =
   in
 
   (* Open file *)
-  let graph = from_file infile in
-  let int_graph = gmap graph int_of_string in 
-  let add_arc = add_arc int_graph 0 2 5 in
-  let gmap_test = gmap add_arc string_of_int in
-
+  (*let graph = from_file infile in*)
+  let graph1 = new_node empty_graph 1 in
+  let graph2 = new_node graph1 2 in
+  let graph3 = new_arc graph2 {src = 1 ; tgt = 2 ; lbl = 8} in
+  let graph4 = arc_label graph3 {src = 1 ; tgt = 2 ; lbl = 3} 2 in
 
   (* Rewrite the graph that has been read. *)
-  let () = export outfile gmap_test in
+  let () = export outfile (gmap graph4 string_of_int) in
 ()

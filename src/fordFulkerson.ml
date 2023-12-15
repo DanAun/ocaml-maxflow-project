@@ -1,9 +1,11 @@
+open Graph
+open Tools
 type path = int arc list
 
 
 
 
 
-let max_flow graph source sink =
-  let list_paths = all_paths_from_source_to_sink graph source sink in
-  List.iter (sub_label min_label i) list_paths
+let arc_label graph arc i =
+  let new_graph = add_arc graph arc.tgt arc.src i in
+  add_arc new_graph arc.src arc.tgt (-i)
