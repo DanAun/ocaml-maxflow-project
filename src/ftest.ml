@@ -34,8 +34,7 @@ let () =
   let graph1 = new_node empty_graph 1 in
   let graph2 = new_node graph1 2 in
   let graph3 = new_arc graph2 {src = 1 ; tgt = 2 ; lbl = 8} in
-  let graph4 = arc_label graph3 {src = 1 ; tgt = 2 ; lbl = 3} 2 in
 
   (* Rewrite the graph that has been read. *)
-  let () = export outfile (gmap graph4 string_of_int) in
+  let () = export outfile (gmap (arc_label graph3 {src = 1 ; tgt = 2 ; lbl = 3} 2) string_of_int) in
 ()

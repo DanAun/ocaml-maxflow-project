@@ -124,7 +124,7 @@ let export path graph =
     node [fontname=\"Helvetica,Arial,sans-serif\"]
     edge [fontname=\"Helvetica,Arial,sans-serif\"]
     rankdir=LR;
-    node [shape = circle];" ;
+    node [shape = circle];\n";
 
   (* Write all arcs *)
   let _ = e_fold graph (fun count arc -> fprintf ff "%d -> %d[label = \"%s\"];\n" arc.src arc.tgt arc.lbl ; count + 1) 0 in
