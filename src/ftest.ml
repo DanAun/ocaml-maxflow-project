@@ -47,15 +47,27 @@ let () =
   let result_arc = {src=1;tgt=5;lbl=result} in
   let res_graph = new_arc int_graph result_arc in*)
 
+  (* Test path iteration
   let graph = from_file infile in
   let int_graph = gmap graph int_of_string in
   let arc1 = {src=0;tgt=3;lbl=10} in
   let arc2 = {src=3;tgt=4;lbl=5} in
   let arc3 = {src=4;tgt=5;lbl=14} in
   let path = [arc1; arc2; arc3] in
-  let res_graph = path_iteration int_graph path in
+  let res_graph = path_iteration int_graph path in*)
+
+  (* Test find path from source to sink*)
+  let rec add_all_arcs_to_graph g = (function
+  | [] -> g
+  | x :: rest -> add_all_arcs_to_graph (add_arc g x.src x.tgt x.lbl) rest) in
+
+  let graph = from_file infile in
+  let int_graph = gmap graph int_of_string in
+  let path = find_path_source_sink int_graph 0 5 in
+  let node_graph = clone_nodes int_graph in
+  let new_graph = add_all_arcs_to_graph node_graph path in
 
   (* Rewrite the graph that has been read. *)
-  let () = export outfile (gmap res_graph string_of_int) in
+  let () = export outfile (gmap new_graph string_of_int) in
   (*let () = export outfile graph in*)
 ()

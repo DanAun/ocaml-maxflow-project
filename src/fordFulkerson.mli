@@ -10,7 +10,7 @@ val arc_label: int graph -> int arc -> int -> int graph
 
 (*  Takes in a graph, source, sink and returns a path from the source to the sink as a list of arcs.
    NB: Must also consider going backwards (arc target to arc source)*)
-(*val find_path_source_sink : int graph -> id -> id -> path*)
+val find_path_source_sink : int graph -> id -> id -> path
 
 (*Given a path does one iteration of the Ford fulkersons Algorithm
    1 - Runs arc_label on all arcs in the path
@@ -21,5 +21,5 @@ val path_iteration : int graph -> path -> int graph
    Run path_iteration with find_path_source_sink until no more paths can be found then return the graph and
    the sum of all arc labels going into the sink
 *)
-val max_flow: int graph -> id -> id -> int graph * int
+(*val max_flow: int graph -> id -> id -> int graph * int*)
 
