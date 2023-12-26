@@ -8,10 +8,10 @@ let min_label path =
   | first_arc :: rest ->
     let rec find_min_label acc = function
       | [] -> acc
-      | arc :: arcs ->
+      | arc :: rest_arcs ->
         let current_label = arc.lbl in
         let min_label_so_far = min acc current_label in
-        find_min_label min_label_so_far arcs
+        find_min_label min_label_so_far rest_arcs
     in
     find_min_label first_arc.lbl rest
 
@@ -38,3 +38,22 @@ and arc_options graph sink acu = function
   (* if the for loop finishes -> there were no outs that could be followed on this source*)
 
 
+
+let path_iteration graph path =
+  let remove_capacity = min_label path in
+  match path with
+  | [] -> graph
+  | _ ->
+    let rec handle_all_arcs acc = function
+      | [] -> acc
+      | arc :: rest_arcs ->
+        let graph_so_far = arc_label acc arc remove_capacity in
+        handle_all_arcs graph_so_far rest_arcs
+    in
+    handle_all_arcs graph path
+
+let max_flow graph p1 p2 =
+  (*TODO:
+     Run path_iteration with find_path_source_sink until no more paths can be found then return the graph and
+   the sum of all arc labels going into the sink
+   *)
