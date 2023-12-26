@@ -49,8 +49,20 @@ let path_iteration graph path =
     in
     handle_all_arcs graph path
 
-(*let max_flow graph p1 p2 =
-  TODO:
-     Run path_iteration with find_path_source_sink until no more paths can be found then return the graph and
-   the sum of all arc labels going into the sink
-   *)
+let max_flow graph src sink =
+  let rec max_flow_acc graph src sink =
+    let rec sink_flow new_acc list =
+    match list with
+    |[] -> new_acc
+    |arc  :: rest -> if arc.lbl > 0 then sink_flow (new_acc + arc.lbl) rest
+      else sink_flow (new_acc) rest
+    in
+
+    let path = find_path_source_sink graph src sink in
+    match path with
+    |[] -> graph, (sink_flow 0 (out_arcs graph sink))
+    |a_path -> 
+      let updated_graph = path_iteration graph a_path in
+      max_flow_acc updated_graph src sink
+  in
+  max_flow_acc graph src sink

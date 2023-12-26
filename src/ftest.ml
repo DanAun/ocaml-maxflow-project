@@ -1,5 +1,5 @@
 open Gfile
-open Graph
+(*open Graph*)
 open Tools
 open FordFulkerson
 
@@ -56,7 +56,7 @@ let () =
   let path = [arc1; arc2; arc3] in
   let res_graph = path_iteration int_graph path in*)
 
-  (* Test find path from source to sink*)
+  (* Test find path from source to sink
   let rec add_all_arcs_to_graph g = (function
   | [] -> g
   | x :: rest -> add_all_arcs_to_graph (add_arc g x.src x.tgt x.lbl) rest) in
@@ -65,9 +65,15 @@ let () =
   let int_graph = gmap graph int_of_string in
   let path = find_path_source_sink int_graph 0 5 in
   let node_graph = clone_nodes int_graph in
-  let new_graph = add_all_arcs_to_graph node_graph path in
+  let new_graph = add_all_arcs_to_graph node_graph path in*)
+
+  (* Test max_flow*)
+  let graph = from_file infile in
+  let int_graph = gmap graph int_of_string in
+  let res_graph, res_flow = max_flow int_graph _source _sink in
+  Printf.printf "The value of res_flow is: %d\n" res_flow;
 
   (* Rewrite the graph that has been read. *)
-  let () = export outfile (gmap new_graph string_of_int) in
-  (*let () = export outfile graph in*)
+  let () = export outfile (gmap res_graph string_of_int) in
+  (*let () = export outfile (gmap int_graph string_of_int) in*)
 ()
