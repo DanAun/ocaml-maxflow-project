@@ -17,8 +17,7 @@ val find_path_source_sink : int graph -> id -> id -> path
 *)
 val path_iteration : int graph -> path -> int graph
 
-(*  Returns the max_flow from a source to a sink in the graph
-   Run path_iteration with find_path_source_sink until no more paths can be found then return the graph and
+(*  Returns the max_flow from a source to a sink in the graph return the graph and
    the sum of all arc labels going into the sink*)
 val max_flow: int graph -> id -> id -> int graph * int
 
