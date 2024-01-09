@@ -1,0 +1,23 @@
+%% Car manufactoring schema 1
+%% Base schema
+
+%% Locations (suppliers, car factories, painting stations, distribution centers)
+
+l, location number: 0   % 0 is the location of the supplier
+l, location number: 1   % 1 is the location of factory 1
+l, location number: 2   % 2 is the location of factory 2
+l, location number: 3   % 3 is the location of painting station 1
+l, location number: 4   % 4 is the location of painting station 2
+l, location number: 5   % 5 is the location of the distribution center
+
+
+%% Export capacity per week
+
+e, from location number: 0, to location number: 1, export capacity: 24 
+e, from location number: 0, to location number: 2, export capacity: 29   
+e, from location number: 1, to location number: 3, export capacity: 16 
+e, from location number: 1, to location number: 4, export capacity: 8
+e, from location number: 2, to location number: 3, export capacity: 16 
+e, from location number: 2, to location number: 4, export capacity: 4
+e, from location number: 3, to location number: 5, export capacity: 8
+e, from location number: 4, to location number: 5, export capacity: 20
