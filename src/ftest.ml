@@ -88,10 +88,10 @@ let () =
     Printf.printf "We are currently getting %d cars to the distribution center\n" schema1_distribution;
 
     let _, schema2_distribution = max_flow case1 _source _sink in
-    Printf.printf "We would get %d cars to the distribution center if we upgrade painting station 1 with 10 additional export capacity\n" schema2_distribution;
+    Printf.printf "We would get %d cars to the distribution center with investement case 1\n" schema2_distribution;
     
     let _, schema3_distribution = max_flow case2 _source 6 in
-    Printf.printf "We would get %d cars to the distribution center if we purchased a new painting station with export capacity of 10\n" schema3_distribution;
+    Printf.printf "We would get %d cars to the distribution center with investement case 2\n" schema3_distribution;
   in
 
   compare_investement_cases int_schema1 int_schema2 int_schema3;

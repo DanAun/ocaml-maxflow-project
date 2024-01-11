@@ -1,5 +1,5 @@
 %% Car manufactoring schema 3
-%% Case purchase new painting station with export capacity of 10
+%% Case purchase new painting station with export capacity of 20
 
     %% Locations(suppliers, car factories, painting stations, distribution centers)
 

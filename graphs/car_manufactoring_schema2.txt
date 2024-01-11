@@ -1,5 +1,5 @@
 %% Car manufactoring schema 2
-%% Case where we upgrade painting station 1 with 10 additional export capacity
+%% Case where we upgrade painting station 1 with 20 additional export capacity
 
 %% Locations (suppliers, car factories, painting stations, distribution centers)
 
