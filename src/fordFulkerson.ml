@@ -6,6 +6,7 @@ let min_label path =
   match path with
   | [] -> failwith "Empty path"
   | first_arc :: rest ->
+    (*Recursively travers the path while storing the current min_label in the acc*)
     let rec find_min_label acc = function
       | [] -> acc
       | arc :: rest_arcs ->
@@ -51,14 +52,18 @@ let path_iteration graph path =
 
 let max_flow graph src sink =
   let rec max_flow_acc graph src sink =
+    (* Helper function to calculate the flow going into the sink from a list of arcs *)
     let rec sink_flow new_acc list =
     match list with
     |[] -> new_acc
-    |arc  :: rest -> if arc.lbl > 0 then sink_flow (new_acc + arc.lbl) rest
+    |arc  :: rest -> 
+      (* Accumulate flow if the arc has positive label *)
+      if arc.lbl > 0 then sink_flow (new_acc + arc.lbl) rest
       else sink_flow (new_acc) rest
     in
 
     let path = find_path_source_sink graph src sink in
+    (* If no path is found, return the current graph and the flow going into the sink *)
     match path with
     |[] -> graph, (sink_flow 0 (out_arcs graph sink))
     |a_path -> 
