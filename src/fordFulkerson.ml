@@ -15,6 +15,7 @@ let min_label path =
     in
     find_min_label first_arc.lbl rest
 
+(* Using the function add_arc from tools, creates or modifyes if already exists, the value of the residual arc label with i, while modifying the label of original arc from the parameter by substracting i *)
 let arc_label graph arc i =
   let new_graph = add_arc graph arc.tgt arc.src i in
     add_arc new_graph arc.src arc.tgt (-i)
@@ -25,11 +26,11 @@ let rec find_path_source_sink_acu graph source sink acu =
   arc_options graph sink acu outs
 
 and arc_options graph sink acu = function
-  | [] -> []
-  | arc :: rest -> if arc.lbl == 0 || (List.mem arc acu) then arc_options graph sink acu rest 
-    else (if arc.tgt == sink then arc :: acu 
+  | [] -> [] (* If no arcs in 'outs' list, return empty list*)
+  | arc :: rest -> if arc.lbl == 0 || (List.mem arc acu) then arc_options graph sink acu rest (* (List.mem arc acu) checks that the arc is not already in the list, if this is the case we have to chose a different arc to avoid infinity loops in the list*)
+    else (if arc.tgt == sink then arc :: acu (* If we have arrived at the sink node, we are finished, and return the list including the last arc*)
       else (let res = find_path_source_sink_acu graph arc.tgt sink (arc :: acu) in
-        if res == [] then arc_options graph sink acu rest
+        if res == [] then arc_options graph sink acu rest (* If res == [], we have arrived at a case where the next arc.tgt has no out_arcs, meaning this is not an acceptable path, and we have to look for another suitable arc*)
         else res))
 
 (* return path (int arc list)*)
