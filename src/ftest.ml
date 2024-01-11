@@ -84,13 +84,13 @@ let () =
   let int_schema3= gmap schema3 int_of_string in
 
   let compare_investement_cases base case1 case2 =
-    let _, schema1_distribution = max_flow base _source _sink in
+    let _, schema1_distribution = max_flow base 0 (max_node base) in
     Printf.printf "We are currently getting %d cars to the distribution center\n" schema1_distribution;
 
-    let _, schema2_distribution = max_flow case1 _source _sink in
+    let _, schema2_distribution = max_flow case1 0 (max_node case1) in
     Printf.printf "We would get %d cars to the distribution center with investement case 1\n" schema2_distribution;
     
-    let _, schema3_distribution = max_flow case2 _source 6 in
+    let _, schema3_distribution = max_flow case2 0 (max_node case2) in
     Printf.printf "We would get %d cars to the distribution center with investement case 2\n" schema3_distribution;
   in
 

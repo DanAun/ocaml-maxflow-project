@@ -12,3 +12,10 @@ let gmap (gr : 'a graph) (f: 'a -> 'b) = e_fold gr (fun acu arc ->
 let add_arc g id1 id2 n = match (find_arc g id1 id2) with
   | None -> new_arc g {src = id1; tgt = id2; lbl = n}
   | Some a -> new_arc g {src = id1; tgt = id2; lbl = a.lbl + n};;
+
+let rec max_node_aux g aux = match (node_exists g (aux + 1)) with
+  | true -> max_node_aux g (aux + 1)
+  | false -> aux
+
+(* Takes a graph in parameter and returns the largest int representing a node in this graph, by using the max_node_aux function declared above*)
+let max_node g = max_node_aux g 0
